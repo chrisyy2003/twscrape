@@ -283,7 +283,7 @@ class AccountsPool:
 
         return await self._get_and_lock(queue, q)
 
-    async def get_for_queue_or_wait(self, queue: str) -> Account | None:
+    async def get_for_queue_or_wait(self, queue: str) -> Account:
         msg_shown = False
         while True:
             account = await self.get_for_queue(queue)
@@ -294,8 +294,7 @@ class AccountsPool:
                 if not msg_shown:
                     nat = await self.next_available_at(queue)
                     if not nat:
-                        logger.warning("No active accounts. Stopping...")
-                        return None
+                        raise NoAccountError("No active accounts")
 
                     msg = f'No account available for queue "{queue}". Next available at {nat}'
                     logger.info(msg)
