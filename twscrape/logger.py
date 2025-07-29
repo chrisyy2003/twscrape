@@ -28,5 +28,5 @@ def _filter(r):
     return r["level"].no >= logger.level(_LOG_LEVEL).no
 
 
-logger.remove()
-logger.add(sys.stderr, filter=_filter)
+# logger.remove()
+# logger.add(sys.stderr, filter=_filter)
