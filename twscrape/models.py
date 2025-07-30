@@ -551,8 +551,8 @@ def _parse_card(obj: dict, url: str):
         co = get_or(val, "component_objects", {})
         do = get_or(val, "destination_objects", {})
         me = list(get_or(val, "media_entities", {}).values())
-        if len(me) > 1:
-            logger.debug(f"[Card] Multiple media entities: {json.dumps(me, indent=2)}")
+        # if len(me) > 1:
+        #     logger.debug(f"[Card] Multiple media entities: {json.dumps(me, indent=2)}")
 
         me = me[0] if me else {}
 
